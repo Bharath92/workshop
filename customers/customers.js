@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var os = require('os');
+var util = require('util');
 
 var app = express();
 var upstreamHosts = [];
@@ -20,6 +21,8 @@ var getUpstreams = function(force, callback) {
     if (upstreamHosts.length != 0 && !force) {
         callback(upstreamHosts);
     } else {
+       // TODO: update the host to take dynamic value
+       //
         http.get({
             host: 'consul',
             port: 8500,

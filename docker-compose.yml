@@ -9,7 +9,10 @@ nginx:
     links:
     - consul:consul
     restart: always
-    command: nginx -g "daemon off;"
+    command: >
+      /bin/containerpilot
+      -config file:///etc/containerpilot/containerpilot.json
+      nginx -g "daemon off;"
 
 # the sales microservice
 sales:
